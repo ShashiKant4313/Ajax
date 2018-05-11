@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+ <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"> 
+</script>
+<script >
+$(document).ready(function(){
+	 $("button").click(function() {
+	   $("#div1").load("ajax.txt");
+	  });
+	});
+</script>
+</head>
+<body>
+<div id="div1"><h2>Let jquery Ajax Change This Text</h2></div>
+<button> Get External Content</button>
+</body>
+</html>

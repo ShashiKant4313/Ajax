@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+<script>
+	var request;
+	function getName() {
+		var roll = document.getElementById("roll").value;
+		var url = "StudentInfo?roll=" + roll;
+         
+		if (window.XMLHttpRequest) {
+			request = new XMLHttpRequest();
+		} 
+		else if (window.ActiveXObject) {
+			request = new ActiveXObject("Microsoft.XMLHTTP");
+		}
+		else {
+			alert("Your browser does not support XMLHttp!");
+		}
+		request.onreadystatechange = showResult;
+		request.open("Post", url, true);
+		request.send();
+	}
+
+	function showResult() {
+		if (request.readyState == 4) {
+			var response = request.responseXML;
+			document.getElementById("NameH1").innerHTML = response
+			.getElementsByTagName("Name")[0].firstChild.nodeValue;
+			document.getElementById("HostelH1").innerHTML = response
+			.getElementsByTagName("Hostel")[0].firstChild.nodeValue;
+			document.getElementById("ContactH1").innerHTML = response
+			.getElementsByTagName("Contact")[0].firstChild.nodeValue;
+			
+			
+		}
+	}
+</script>
+</head>
+<body>
+<h2>GET STUDENT INFO</h2>
+<br>Enter Roll Number<input type="text" id="roll">
+<input type="button" value="Get Name" onclick="getName()"/>
+<br > Name :<span id="NameH1"></span> 
+<br > Hostel :<span id="HostelH1"></span>  
+<br > Contact :<span id="ContactH1"></span> 
+</body>
+</html>
